@@ -229,34 +229,34 @@ def z_listreceivedbyaddress(address='', minconf=1):
     data = '{'+rpc.get_request_metadata()+', "method": "z_listreceivedbyaddress", "params": ["'+str(address)+'", '+str(minconf)+'] }'
     return rpc.rpc_request(data)
 
-def z_listunspent(minconf=1, maxconf=9999999, includeWatchOnly=False, addresses=[''], address=''):
+def z_listunspent(minconf=1, maxconf=9999999, includeWatchOnly=False, addresses=['']):
     addr_list = "[";
     for addr in addresses:
         addr_list += "\"" + str(addr) + "\","
     if (len(addresses) > 0):
         addr_list = addr_list[:-1]
     addr_list += "]";
-    data = '{'+rpc.get_request_metadata()+', "method": "z_listunspent", "params": ['+str(minconf)+', '+str(maxconf)+', '+str(includeWatchOnly).lower()+', '+addr_list+(', "'+str(address)+'"' if address != '' else '')+'] }'
+    data = '{'+rpc.get_request_metadata()+', "method": "z_listunspent", "params": ['+str(minconf)+', '+str(maxconf)+', '+str(includeWatchOnly).lower()+', '+addr_list+'] }'
     return rpc.rpc_request(data)
 
-def z_mergetoaddress(fromaddresses=[''], address='', toaddress='', fee=0.0001, transparent_limit=50, shielded_limit=10, memo=''):
+def z_mergetoaddress(fromaddresses=[''], toaddress='', fee=0.0001, transparent_limit=50, shielded_limit=10, memo=''):
     addr_list = "[";
     for addr in fromaddresses:
         addr_list += "\"" + str(addr) + "\","
     if (len(fromaddresses) > 0):
         addr_list = addr_list[:-1]
     addr_list += "]";
-    data = '{'+rpc.get_request_metadata()+', "method": "z_mergetoaddress", "params": ['+addr_list+', "'+str(toaddress)+'"'+(', "'+str(address)+'"' if address != '' else '')+(', '+str(fee) if fee != 0.0001 else '')+(', '+str(transparent_limit) if transparent_limit != 50 else '')+(', '+str(shielded_limit) if shielded_limit != 10 else '')+(', "'+str(memo)+'"' if memo != '' else '')+'] }'
+    data = '{'+rpc.get_request_metadata()+', "method": "z_mergetoaddress", "params": ['+addr_list+', "'+str(toaddress)+'"'+(', '+str(fee) if fee != 0.0001 else '')+(', '+str(transparent_limit) if transparent_limit != 50 else '')+(', '+str(shielded_limit) if shielded_limit != 10 else '')+(', "'+str(memo)+'"' if memo != '' else '')+'] }'
     return rpc.rpc_request(data)
 
-def z_sendmany(fromaddress='', amounts={'': 0.0}, address='', amount=0.0, memo='', minconf=1, fee=0.0001):
+def z_sendmany(fromaddress='', amounts={'': 0.0}, memo='', minconf=1, fee=0.0001):
     amount_list = '[';
     for amt in amounts:
         amount_list += '{"address":"' + amt + '", "amount": ' + str(amounts[amt]) + '},'
     if (len(amounts) > 0):
         amount_list = amount_list[:-1]
     amount_list += ']'
-    data = '{'+rpc.get_request_metadata()+', "method": "z_sendmany", "params": ["'+str(fromaddress)+'", ' + amount_list +(', "'+str(address)+'"' if address != '' else '')+(', '+str(amount) if amount != 0.0 else '')+(', "'+str(memo)+'"' if memo != '' else '')+(', '+str(minconf) if minconf != 1 else '')+ (', '+str(fee) if fee != 0.0001 else '')+'] }'
+    data = '{'+rpc.get_request_metadata()+', "method": "z_sendmany", "params": ["'+str(fromaddress)+'", ' + amount_list +(', "'+str(memo)+'"' if memo != '' else '')+(', '+str(minconf) if minconf != 1 else '')+ (', '+str(fee) if fee != 0.0001 else '')+'] }'
     return rpc.rpc_request(data)
 
 def z_shieldcoinbase(fromaddress='', toaddress='', fee=0.0001, limit=50):
@@ -265,7 +265,6 @@ def z_shieldcoinbase(fromaddress='', toaddress='', fee=0.0001, limit=50):
 
 def zcbenchmark(benchmarktype='', samplecount=1):
     data = '{'+rpc.get_request_metadata()+', "method": "zcbenchmark", "params": ["'+str(benchmarktype)+'", '+str(samplecount)+'] }'
-    print(data)
     return rpc.rpc_request(data)
 
 
