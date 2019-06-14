@@ -128,8 +128,8 @@ def resendwallettransactions():
 # incomplete: does not considers last two parameters: subtractFeeFromAmt and address
 def sendmany(account='', amounts={'': 0}, minconf=1, comment='', subtractFeeFromAmt=[""], address=''):
     amount_list = "{";
-    for amt in amounts:
-        amount_list += "\"" + amt + "\":" + str(amounts[amt]) + ","
+    for addr in amounts:
+        amount_list += "\"" + addr + "\":" + str(amounts[addr]) + ","
     if (len(amounts) > 0):
         amount_list = amount_list[:-1]
     amount_list += "}"
@@ -251,8 +251,8 @@ def z_mergetoaddress(fromaddresses=[''], toaddress='', fee=0.0001, transparent_l
 
 def z_sendmany(fromaddress='', amounts={'': 0.0}, memo='', minconf=1, fee=0.0001):
     amount_list = '[';
-    for amt in amounts:
-        amount_list += '{"address":"' + amt + '", "amount": ' + str(amounts[amt]) + '},'
+    for addr in amounts:
+        amount_list += '{"address":"' + addr + '", "amount": ' + str(amounts[addr]) + '},'
     if (len(amounts) > 0):
         amount_list = amount_list[:-1]
     amount_list += ']'
