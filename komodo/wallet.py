@@ -95,14 +95,12 @@ def listreceivedbyaddress(minconf=1, includeEmpty=False, includeWatchOnly=False)
 
 
 def listsinceblock(blockhash='', targetconf=1, includeWatchOnly=False):
-    data = '{'+rpc.get_request_metadata()+', "method": "listsinceblock", "params": ["' + str(
-        blockhash) + '", ' + str(targetconf) + ', ' + str(includeWatchOnly).lower() + '] }'
+    data = '{'+rpc.get_request_metadata()+', "method": "listsinceblock", "params": ["' + str(blockhash) + '", ' + str(targetconf) + ', ' + str(includeWatchOnly).lower() + '] }'
     return rpc.rpc_request(data)
 
 # listtransactions with account is deprecated
 def listtransactions(account="*", count=10, skip=0, includeWatchOnly=False):
-    data = '{'+rpc.get_request_metadata()+', "method": "listtransactions", "params": ["*", ' + str(
-        count) + ', ' + str(skip) + ', ' + str(includeWatchOnly).lower() + '] }'
+    data = '{'+rpc.get_request_metadata()+', "method": "listtransactions", "params": ["*", ' + str(count) + ', ' + str(skip) + ', ' + str(includeWatchOnly).lower() + '] }'
     return rpc.rpc_request(data)
 
 def listunspent(minconf=1, maxconf=9999999, addresses=[""]):
@@ -113,8 +111,7 @@ def listunspent(minconf=1, maxconf=9999999, addresses=[""]):
     if (len(addresses) > 0):
         addr_list = addr_list[:-1]
     addr_list += "]";
-    data = '{'+rpc.get_request_metadata()+', "method": "listunspent", "params": [' + str(minconf) + ', ' + str(
-        maxconf) + ', ' + addr_list + '] }'
+    data = '{'+rpc.get_request_metadata()+', "method": "listunspent", "params": [' + str(minconf) + ', ' + str(maxconf) + ', ' + addr_list + '] }'
     return rpc.rpc_request(data)
 
 # See the listunspent and listlockunspent calls to determine local transaction state and info.
@@ -143,8 +140,7 @@ def sendmany(account='', amounts={'': 0}, minconf=1, comment='', subtractFeeFrom
     subtractFeeFrom_list = subtractFeeFrom_list[:-1]
     subtractFeeFrom_list += "]"
     '''
-    data = '{'+rpc.get_request_metadata()+', "method": "sendmany", "params": ["", ' + amount_list + ', ' + str(
-        minconf) + ', "' + str(comment) + '"] }'
+    data = '{'+rpc.get_request_metadata()+', "method": "sendmany", "params": ["", ' + amount_list + ', ' + str(minconf) + ', "' + str(comment) + '"] }'
     return rpc.rpc_request(data)
 
 def sendtoaddress(address='', amount=0.0, comment='', comment_to='', subtractFeeFromAmt=False):
@@ -176,3 +172,102 @@ def z_exportviewingkey(z_address=''):
 def z_exportwallet(filename='z_wallet_export'):
     data = '{'+rpc.get_request_metadata()+', "method": "z_exportwallet", "params": ["'+str(filename)+'"] }'
     return rpc.rpc_request(data)
+
+def z_getbalance(address='', minconf=1):
+    data = '{'+rpc.get_request_metadata()+', "method": "z_getbalance", "params": ["'+str(address)+'", '+str(minconf)+'] }'
+    return rpc.rpc_request(data)
+
+def z_getnewaddress():
+    data = '{'+rpc.get_request_metadata()+', "method": "z_getnewaddress", "params": [] }'
+    return rpc.rpc_request(data)
+
+def z_getoperationresult(operationid=['']):
+    oppid_list = "[";
+    for oppid in operationid:
+        oppid_list += "\"" + str(oppid) + "\","
+    if (len(operationid) > 0):
+        oppid_list = oppid_list[:-1]
+    oppid_list += "]";
+    data = '{'+rpc.get_request_metadata()+', "method": "z_getoperationresult", "params": ['+oppid_list+'] }'
+    return rpc.rpc_request(data)
+
+def z_getoperationstatus(operationid=['']):
+    oppid_list = "[";
+    for oppid in operationid:
+        oppid_list += "\"" + str(oppid) + "\","
+    if (len(operationid) > 0):
+        oppid_list = oppid_list[:-1]
+    oppid_list += "]";
+    data = '{'+rpc.get_request_metadata()+', "method": "z_getoperationstatus", "params": ['+oppid_list+'] }'
+    return rpc.rpc_request(data)
+
+def z_gettotalbalance(minconf=1, includeWatchOnly=False):
+    data = '{'+rpc.get_request_metadata()+', "method": "z_gettotalbalance", "params": ['+str(minconf)+', '+str(includeWatchOnly).lower()+'] }'
+    return rpc.rpc_request(data)
+
+def z_importkey(z_privatekey='', rescan='whenkeyisnew', startHeight=0):
+    data = '{'+rpc.get_request_metadata()+', "method": "z_importkey", "params": ["'+str(z_privatekey)+'", "'+str(rescan)+'", '+str(startHeight)+'] }'
+    return rpc.rpc_request(data)
+
+def z_importviewingkey(viewing_key='', rescan='whenkeyisnew', startHeight=0):
+    data = '{'+rpc.get_request_metadata()+', "method": "z_importviewingkey", "params": ["'+str(viewing_key)+'", "'+str(rescan)+'", '+str(startHeight)+'] }'
+    return rpc.rpc_request(data)
+
+def z_importwallet(filename=''):
+    data = '{'+rpc.get_request_metadata()+', "method": "z_importwallet", "params": ["'+str(filename)+'"] }'
+    return rpc.rpc_request(data)
+
+def z_listaddresses(includeWatchOnly=False):
+    data = '{'+rpc.get_request_metadata()+', "method": "z_listaddresses", "params": ['+str(includeWatchOnly).lower()+'] }'
+    return rpc.rpc_request(data)
+
+def z_listoperationids(status=''):
+    data = '{'+rpc.get_request_metadata()+', "method": "z_listoperationids", "params": ["'+str(status)+'"] }'
+    return rpc.rpc_request(data)
+
+def z_listreceivedbyaddress(address='', minconf=1):
+    data = '{'+rpc.get_request_metadata()+', "method": "z_listreceivedbyaddress", "params": ["'+str(address)+'", '+str(minconf)+'] }'
+    return rpc.rpc_request(data)
+
+def z_listunspent(minconf=1, maxconf=9999999, includeWatchOnly=False, addresses=[''], address=''):
+    addr_list = "[";
+    for addr in addresses:
+        addr_list += "\"" + str(addr) + "\","
+    if (len(addresses) > 0):
+        addr_list = addr_list[:-1]
+    addr_list += "]";
+    data = '{'+rpc.get_request_metadata()+', "method": "z_listunspent", "params": ['+str(minconf)+', '+str(maxconf)+', '+str(includeWatchOnly).lower()+', '+addr_list+(', "'+str(address)+'"' if address != '' else '')+'] }'
+    return rpc.rpc_request(data)
+
+def z_mergetoaddress(fromaddresses=[''], address='', toaddress='', fee=0.0001, transparent_limit=50, shielded_limit=10, memo=''):
+    addr_list = "[";
+    for addr in fromaddresses:
+        addr_list += "\"" + str(addr) + "\","
+    if (len(fromaddresses) > 0):
+        addr_list = addr_list[:-1]
+    addr_list += "]";
+    data = '{'+rpc.get_request_metadata()+', "method": "z_mergetoaddress", "params": ['+addr_list+', "'+str(toaddress)+'"'+(', "'+str(address)+'"' if address != '' else '')+(', '+str(fee) if fee != 0.0001 else '')+(', '+str(transparent_limit) if transparent_limit != 50 else '')+(', '+str(shielded_limit) if shielded_limit != 10 else '')+(', "'+str(memo)+'"' if memo != '' else '')+'] }'
+    return rpc.rpc_request(data)
+
+def z_sendmany(fromaddress='', amounts={'': 0.0}, address='', amount=0.0, memo='', minconf=1, fee=0.0001):
+    amount_list = '[';
+    for amt in amounts:
+        amount_list += '{"address":"' + amt + '", "amount": ' + str(amounts[amt]) + '},'
+    if (len(amounts) > 0):
+        amount_list = amount_list[:-1]
+    amount_list += ']'
+    data = '{'+rpc.get_request_metadata()+', "method": "z_sendmany", "params": ["'+str(fromaddress)+'", ' + amount_list +(', "'+str(address)+'"' if address != '' else '')+(', '+str(amount) if amount != 0.0 else '')+(', "'+str(memo)+'"' if memo != '' else '')+(', '+str(minconf) if minconf != 1 else '')+ (', '+str(fee) if fee != 0.0001 else '')+'] }'
+    return rpc.rpc_request(data)
+
+def z_shieldcoinbase(fromaddress='', toaddress='', fee=0.0001, limit=50):
+    data = '{'+rpc.get_request_metadata()+', "method": "z_shieldcoinbase", "params": ["'+str(fromaddress)+'", "'+str(toaddress)+(', '+str(fee) if fee != 0.0001 else '')+(', '+str(limit) if limit != 50 else '')+'"] }'
+    return rpc.rpc_request(data)
+
+def zcbenchmark(benchmarktype='', samplecount=1):
+    data = '{'+rpc.get_request_metadata()+', "method": "zcbenchmark", "params": ["'+str(benchmarktype)+'", '+str(samplecount)+'] }'
+    print(data)
+    return rpc.rpc_request(data)
+
+
+
+
