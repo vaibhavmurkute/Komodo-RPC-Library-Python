@@ -10,7 +10,7 @@ def rpc_request(data_string=''):
     if (response.ok):
         return response.text
     else:
-        return 'Failed with Status Code: ' + str(response.status_code) + ', reason: ' + str(response.reason)
+        return 'Failed with Status Code: ' + str(response.status_code) + ', reason: ' + str(response.text)
 
 def get_request_metadata():
     return '"jsonrpc": "'+str(jsonrpc_ver)+'", "id":"'+str(rpc_req_id)+'"'
