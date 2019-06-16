@@ -2,45 +2,45 @@ import rpc_util.rpc as rpc
 
 def getwalletinfo():
     '''
-        The getwalletinfo method returns an object containing various information about the wallet state.
-        :return: JSON string:
-                "walletversion"         :   (numeric)	:   the wallet version
-                "balance"               :   (numeric)	:   the total confirmed balance of the wallet
-                "unconfirmed_balance"   :   (numeric)	:   the total unconfirmed balance of the wallet
-                "immature_balance"      :   (numeric)	:   the total immature balance of the wallet
-                "txcount"	            :   (numeric)	:   the total number of transactions in the wallet
-                "keypoololdest"	        :   (numeric)	:   the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool
-                "keypoolsize"	        :   (numeric)	:   how many new keys are pre-generated
-                "unlocked_until"	    :   (numeric)	:   the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked
-                "paytxfee"	            :   (numeric)	:   the transaction fee configuration, given as the relevant COIN per KB
+    The getwalletinfo method returns an object containing various information about the wallet state.
+    :return: JSON string:
+            "walletversion"         :   (numeric)	:   the wallet version
+            "balance"               :   (numeric)	:   the total confirmed balance of the wallet
+            "unconfirmed_balance"   :   (numeric)	:   the total unconfirmed balance of the wallet
+            "immature_balance"      :   (numeric)	:   the total immature balance of the wallet
+            "txcount"	            :   (numeric)	:   the total number of transactions in the wallet
+            "keypoololdest"	        :   (numeric)	:   the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool
+            "keypoolsize"	        :   (numeric)	:   how many new keys are pre-generated
+            "unlocked_until"	    :   (numeric)	:   the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked
+            "paytxfee"	            :   (numeric)	:   the transaction fee configuration, given as the relevant COIN per KB
     '''
     data = '{'+rpc.get_request_metadata()+', "method": "getwalletinfo", "params": [] }'
     return rpc.rpc_request(data)
 
 def backupwallet(filename):
     '''
-        The backupwallet method safely copies the wallet.dat file to the indicated destination.
-        This method requires that the coin daemon have the exportdir runtime parameter enabled.
-        :param: "destination" :   (string, required)  :   the destination filename, saved in the directory set by the exportdir runtime parameter
-        :return: "path"	:   (JSON string)    :   the full path of the destination file
+    The backupwallet method safely copies the wallet.dat file to the indicated destination.
+    This method requires that the coin daemon have the exportdir runtime parameter enabled.
+    :param "destination" :   (string, required)  :   the destination filename, saved in the directory set by the exportdir runtime parameter
+    :return: "path"	:   (JSON string)    :   the full path of the destination file
     '''
     data = '{'+rpc.get_request_metadata()+', "method": "backupwallet", "params": ["' + str(filename) + '"] }'
     return rpc.rpc_request(data)
 
 def dumpprivkey(address):
     '''
-        The dumpprivkey method reveals the private key corresponding to the indicated address.
-        :param: "address" :   (string, required)  :   the address for the private key
-        :return: "data"    :   (JSON string)    :   the private key
+    The dumpprivkey method reveals the private key corresponding to the indicated address.
+    :param "address" :   (string, required)  :   the address for the private key
+    :return: "data"    :   (JSON string)    :   the private key
     '''
     data = '{'+rpc.get_request_metadata()+', "method": "dumpprivkey", "params": ["' + str(address) + '"] }'
     return rpc.rpc_request(data)
 
 def dumpwallet(filename):
     '''
-        The dumpwallet method dumps all transparent-address wallet keys into a file, using a human-readable format.
-        :param: "filename"    :   (string, required)	:   the filename, saved in the folder set by the exportdir runtime parameter.
-        :return: "path"    :   (JSON string)    :   the full path of the destination file
+    The dumpwallet method dumps all transparent-address wallet keys into a file, using a human-readable format.
+    :param: "filename"    :   (string, required)	:   the filename, saved in the folder set by the exportdir runtime parameter.
+    :return: "path"    :   (JSON string)    :   the full path of the destination file
     '''
     data = '{'+rpc.get_request_metadata()+', "method": "dumpwallet", "params": ["' + str(filename) + '"] }'
     return rpc.rpc_request(data)
