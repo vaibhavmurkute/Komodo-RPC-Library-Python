@@ -3,7 +3,7 @@ import rpc_util.rpc as rpc
 def coinsupply(height=0):
     '''
     The coinsupply method returns the coin supply information for the indicated block height. If no height is given, the method defaults to the blockchain's current height.
-    :param height: (integer, optional)	the desired block height
+    :param height: (integer, optional) the desired block height
     :return: JSON string containing:
         "result"	(string)	whether the request was successful
         "coin"      (string)	the ticker symbol of the coin for asset chains, otherwise KMD
@@ -20,7 +20,7 @@ def coinsupply(height=0):
 def getbestblockhash():
     '''
     The getbestblockhash method returns the hash of the best (tip) block in the longest block chain
-    :return: "hex"  (JSON string)   he block hash, hex encoded
+    :return: "hex" (JSON string) the block hash, hex encoded
     '''
     data = '{'+rpc.get_request_metadata()+', "method": "getbestblockhash", "params": [] }'
     return rpc.rpc_request(data)
@@ -30,7 +30,7 @@ def getblock(block_id=1, verbose=True):
     '''
     The getblock method returns the block's relevant state information
     :param block_id: (string OR number) block_id can be block-hash (string) OR block-height (number)
-    :param verbose: (boolean, optional, default=true)	true returns a json object, false returns hex-encoded data
+    :param verbose: (boolean, optional, default=true) true returns a json object, false returns hex-encoded data
     :return: JSON string containing:
         "hash"	            (string)	the block hash (same as provided hash)
         "confirmations"	    (numeric)	a confirmation number that is dPoW aware;
@@ -39,7 +39,7 @@ def getblock(block_id=1, verbose=True):
         "height"	        (numeric)	the block height or index (same as provided height)
         "version"	        (numeric)	the block version
         "merkleroot"	    (string)	the merkle root
-        "tx" :          [ "transaction_id" ,...]	(array of strings)
+        "tx" :          [ "tx_id",...]	(array of strings)
         "time"	            (numeric)	the block time in seconds since epoch (Jan 1 1970 GMT)
         "nonce"	            (numeric)	the nonce
         "bits"	            (string)	the bits
@@ -63,7 +63,7 @@ def getblockchaininfo():
 def getblockcount():
     '''
     The getblockcount method returns the number of blocks in the best valid block chain
-    :return: data	(JSON string)	the current block count
+    :return: data (JSON string) the current block count
     '''
     data = '{'+rpc.get_request_metadata()+', "method": "getblockcount", "params": [] }'
     return rpc.rpc_request(data)
@@ -72,8 +72,8 @@ def getblockcount():
 def getblockhash(index=1):
     '''
     The getblockhash method returns the hash of the indicated block index, according to the best blockchain at the time provided.
-    :param index: (numeric, required)	the block index
-    :return: "hash"	(JSON string)	the block hash
+    :param index: (numeric, required) the block index
+    :return: "hash"	(JSON string) the block hash
     '''
     data = '{'+rpc.get_request_metadata()+', "method": "getblockhash", "params": ['+str(index)+'] }'
     return rpc.rpc_request(data)
@@ -83,9 +83,9 @@ def getblockhashes(high=0, low=0, no_orphans=False, logical_times=False):
     '''
     The getblockhashes method returns an array of hashes of blocks within the timestamp range provided.
     The method requires timestampindex to be enabled.
-    :param high: (numeric, required)	the newer block timestamp
-    :param low: (numeric, required)	the older block timestamp
-    :param no_orphans: (boolean)	a value of true implies that the method will only include blocks on the main chain
+    :param high: (numeric, required) the newer block timestamp
+    :param low: (numeric, required) the older block timestamp
+    :param no_orphans: (boolean) a value of true implies that the method will only include blocks on the main chain
     :param logical_times: (boolean)	a value of true implies that the method will only include logical timestamps with hashes
     :return: JSON string containing:
         "hash"	    (string)	the block hash
@@ -99,8 +99,8 @@ def getblockhashes(high=0, low=0, no_orphans=False, logical_times=False):
 def getblockheader(hash='', verbose=True):
     '''
     The getblockheader method returns information about the indicated block.
-    :param hash:    (string, required)	the block hash
-    :param verbose: (boolean, optional, default=true)	true returns a json object, false returns hex-encoded data
+    :param hash: (string, required)	the block hash
+    :param verbose: (boolean, optional, default=true) true returns a json object, false returns hex-encoded data
     :return: JSON string containing information about the indicated block
     '''
     data = '{'+rpc.get_request_metadata()+', "method": "getblockheader", "params": ["'+str(hash)+'", '+str(verbose).lower()+'] }'
@@ -126,7 +126,7 @@ def getchaintxstats(nblocks=1, blockhash=''):
     '''
     The method getchaintxstats returns statistics about the total number and rate of transactions in the chain.
     :param nblocks: (numeric, optional)	the number of blocks in the averaging window.
-    :param blockhash: (string, optional)	the hash of the block which ends the window
+    :param blockhash: (string, optional) the hash of the block which ends the window
     :return: JSON string containing:
         "time"	                    (numeric)	the timestamp for the final block in the window in UNIX format
         "txcount"	                (numeric)	the total number of transactions in the chain up to this point
@@ -142,7 +142,7 @@ def getchaintxstats(nblocks=1, blockhash=''):
 def getdifficulty():
     '''
     The getdifficulty method returns the proof-of-work difficulty as a multiple of the minimum difficulty.
-    :return: number	(JSON String)	the proof-of-work difficulty as a multiple of the minimum difficulty
+    :return: number (JSON String) the proof-of-work difficulty as a multiple of the minimum difficulty
     '''
     data = '{'+rpc.get_request_metadata()+', "method": "getdifficulty", "params": [] }'
     return rpc.rpc_request(data)
@@ -151,12 +151,12 @@ def getlastsegidstakes(depth=1):
     '''
     The getlastsegidstakes method returns an object containing the number of blocks staked by each segid in the last X number of blocks, where the value of X is equal to the indicated depth.
     Only applies to -ac_staked asset chains.
-    :param depth: (numeric, required)	the number of blocks to scan, starting from the current height and working backwards.
+    :param depth: (numeric, required) the number of blocks to scan, starting from the current height and working backwards.
     :return: JSON string containing:
         "NotSet"	(numeric)	the number of blocks that have no SegId set
         "PoW"	    (numeric)	the number of blocks created through PoW
         "PoSPerc"	(numeric)	the percentage of blocks created through PoS
-        "SegIds"	(json object)	the json containing the data of number of blocks in each SegId
+        "SegIds"	(json)	    the json containing the data of number of blocks in each SegId
         "n"	        (numeric)	the number of blocks staked from SegId n in the last X blocks, where X is equal to the indicated depth
     '''
     data = '{'+rpc.get_request_metadata()+', "method": "getlastsegidstakes", "params": ['+str(depth)+'] }'
@@ -166,7 +166,7 @@ def getmempoolinfo():
     '''
     The getmempoolinfo method returns details on the active state of the transaction memory pool.
     :return:  JSON string containing:
-        "size"	(numeric)	the current transaction count
+        "size"	(numeric)   the current transaction count
         "bytes"	(numeric)	the sum of all transaction sizes
         "usage"	(numeric)	the total memory usage for the mempool
     '''
@@ -177,7 +177,7 @@ def getrawmempool(verbose=False):
     '''
     The getrawmempool method returns all transaction ids in the memory pool as a json array of transaction ids.
     :param verbose: (boolean, optional, default=false)	true for a json object, false for a json array of transaction ids
-    :return: JSON string, if verbose=False: "transaction_id"	(string)	the transaction id
+    :return: JSON string, if verbose=False: "transaction_id" (string) the transaction id
         if verbose=True:
         "transaction_id":   { .... }	(json object)
         "size"	            (numeric)	the transaction size in bytes
@@ -195,8 +195,8 @@ def getrawmempool(verbose=False):
 def getspentinfo(txid='', index=0):
     '''
     The getspentinfo method returns the transaction id and index where the given output is spent. The method requires spentindex to be enabled.
-    :param txid: (string)	the hex string of the transaction id.
-    :param index: (number)	the output's index
+    :param txid: (string) the hex string of the transaction id.
+    :param index: (number) the output's index
     :return: JSON string containing:
         "txid"	(string)	the transaction id
         "index"	(number)	the spending input index
@@ -209,7 +209,7 @@ def gettxout(txid='', vout=0, includemempool=False):
     '''
     The gettxout method returns details about an unspent transaction output.
     :param txid: (string, required)	the transaction id
-    :param vout: (numeric, required)	the vout value
+    :param vout: (numeric, required) the vout value
     :param includemempool: (boolean, optional)	whether to include the mempool
     :return: JSON string with details about an unspent transaction output
     '''
@@ -219,8 +219,8 @@ def gettxout(txid='', vout=0, includemempool=False):
 def gettxoutproof(txid=[''], blockhash=''):
     '''
     The gettxoutproof method returns a hex-encoded proof showing that the indicated transaction was included in a block.
-    :param txid: (string)	a transaction hash
-    :param blockhash: (string, optional)	if specified, the method looks for the relevant transaction id in this block hash
+    :param txid: (string) a transaction hash
+    :param blockhash: (string, optional) if specified, the method looks for the relevant transaction id in this block hash
     :return: data (JSON string)	a string that is a serialized, hex-encoded data for the proof
     '''
     txid_list = "[";
@@ -250,7 +250,7 @@ def gettxoutsetinfo():
 def kvsearch(key=''):
     '''
     The kvsearch method searches for a key stored via the kvupdate command.
-    :param key: (string, required)	the key for which the user desires to search the chain
+    :param key: (string, required) the key for which the user desires to search the chain
     :return: JSON string containing:
         "coin"	        (string)	the chain on which the key is stored
         "currentheight"	(numeric)	the current height of the chain
@@ -269,11 +269,12 @@ def kvsearch(key=''):
 def kvupdate(key='', value='', days=1, passphrase=''):
     '''
     The kvupdate method stores a key/value pair via OP_RETURN.
-    :param key: (string, required)	key (should be unique)
-    :param value: (string, required)	value
-    :param days: (numeric, required)	amount of days before the key expires (1440 blocks/day); minimum 1 day
-    :param passphrase: (string, optional)	passphrase required to update this key
-    :return: "coin"	    (string)	the chain on which the key is stored
+    :param key: (string, required) key (should be unique)
+    :param value: (string, required) value
+    :param days: (numeric, required) amount of days before the key expires (1440 blocks/day); minimum 1 day
+    :param passphrase: (string, optional) passphrase required to update this key
+    :return: JSON string containing:
+        "coin"	        (string)	the chain on which the key is stored
         "height"	    (numeric)	the height at which the key was stored
         "expiration"	(numeric)	the height at which the key will expire
         "flags"	        (string)	the amount of days the key will be stored
@@ -306,7 +307,7 @@ def notaries(height=0, timestamp=0):
     The notaries method returns the public key, BTC address, and KMD address for each Komodo notary node.
     Either or both of the height and timestamp parameters will suffice.
     :param height: (number)	the block height desired for the query
-    :param timestamp: (number)	the timestamp of the block desired for the query
+    :param timestamp: (number) the timestamp of the block desired for the query
     :return: JSON string containing:
         "notaries":     [ ... ]	(array)
         "pubkey"	    (string)	the public signing key of the indicated notary node, used on the KMD network to create notary-node authorized transactions
@@ -323,9 +324,9 @@ def notaries(height=0, timestamp=0):
 def verifychain(checklevel=3, numblocks=0):
     '''
     The verifychain method verifies the coin daemon's blockchain database
-    :param checklevel: (numeric, optional, 0-4, default=3)	indicates the thoroughness of block verification
-    :param numblocks: (numeric, optional, default=288, 0=all)	indicates the number of blocks to verify
-    :return: true/false	(JSON string)	whether the verification was successful
+    :param checklevel: (numeric, optional, 0-4, default=3) indicates the thoroughness of block verification
+    :param numblocks: (numeric, optional, default=288, 0=all) indicates the number of blocks to verify
+    :return: true/false	(JSON string) whether the verification was successful
     '''
     data = '{'+rpc.get_request_metadata()+', "method": "verifychain", "params": ['+str(checklevel)+','+str(numblocks)+'] }'
     return rpc.rpc_request(data)
@@ -334,7 +335,7 @@ def verifytxoutproof(proofstring=''):
     '''
     The verifytxoutproof method verifies that a proof points to a transaction in a block.
     :param proofstring: (string, required)	the hex-encoded proof generated by gettxoutproof
-    :return: "txid"	(JSON string)	the transaction ids to which the proof commits; the array is empty if the proof is invalid
+    :return: "txid"	(JSON string) the transaction ids to which the proof commits; the array is empty if the proof is invalid
     '''
     data = '{'+rpc.get_request_metadata()+', "method": "verifytxoutproof", "params": ["'+str(proofstring)+'"] }'
     return rpc.rpc_request(data)
