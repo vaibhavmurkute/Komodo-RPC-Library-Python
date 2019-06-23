@@ -1,4 +1,4 @@
-class KomodoRpc:
+class KomodoRPC:
     node_addr = '127.0.0.1'
     rpc_port = 7777
     req_method = 'POST'
@@ -19,7 +19,7 @@ class KomodoRpc:
                 rpc_username='', rpc_password='', jsonrpc_ver = '1.0',
                 rpc_req_id = 'curltest'):
         '''
-        Create an instance of KomodoRpc class to populate RPC-request options
+        Create an instance of KomodoRPC class to populate RPC-request options
         and authentication parameters.
         :param node_addr: (string, default='127.0.0.1') IP address of node
             where komodod is listening for RPCs.
@@ -29,7 +29,7 @@ class KomodoRpc:
         :param rpc_password: (string) Password for RPC authentication
         :param jsonrpc_ver: (string, default='1.0') JSON RPC version
         :param rpc_req_id: (string) ID for RPC requests
-        :return: Object of KomodoRpc class
+        :return: Object of KomodoRPC class
         '''
         cls.node_addr = node_addr
         cls.rpc_port = rpc_port
