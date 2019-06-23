@@ -1,5 +1,6 @@
 import rpc_util.rpc as rpc
 
+
 def generate(numblocks=1):
     '''
     The generate method instructs the coin daemon to immediately mine
@@ -13,6 +14,7 @@ def generate(numblocks=1):
                 '"params": [' + str(numblocks) + '] }'
     return rpc.rpc_request(data)
 
+
 def getgenerate():
     '''
     The getgenerate method returns a boolean value indicating
@@ -24,6 +26,7 @@ def getgenerate():
                 '"method": "getgenerate", ' \
                 '"params": [] }'
     return rpc.rpc_request(data)
+
 
 def setgenerate(generate=False, genproclimit=2):
     '''
@@ -41,3 +44,4 @@ def setgenerate(generate=False, genproclimit=2):
                 '"params": ['+str(generate).lower()+', '+str(genproclimit)+\
            '] }'
     return rpc.rpc_request(data)
+
