@@ -1,5 +1,6 @@
 import rpc_util.rpc as rpc
 
+
 def getinfo():
     '''
     The getinfo method returns an object containing various state info
@@ -33,3 +34,4 @@ def stop():
                 '"method": "stop", ' \
                 '"params": [] }'
     return rpc.rpc_request(data)
+
