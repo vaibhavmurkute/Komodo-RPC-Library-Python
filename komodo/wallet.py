@@ -1,5 +1,6 @@
 import rpc_util.rpc as rpc
 
+
 def getwalletinfo():
     '''
     The getwalletinfo method returns an object containing various
@@ -27,6 +28,7 @@ def getwalletinfo():
                 '"params": [] }'
     return rpc.rpc_request(data)
 
+
 def backupwallet(filename):
     '''
     The backupwallet method safely copies the wallet.dat file
@@ -42,6 +44,7 @@ def backupwallet(filename):
                 '"params": ["' + str(filename) + '"] }'
     return rpc.rpc_request(data)
 
+
 def dumpprivkey(address):
     '''
     The dumpprivkey method reveals the private key corresponding
@@ -53,6 +56,7 @@ def dumpprivkey(address):
                 '"method": "dumpprivkey", ' \
                 '"params": ["' + str(address) + '"] }'
     return rpc.rpc_request(data)
+
 
 def dumpwallet(filename):
     '''
@@ -66,6 +70,7 @@ def dumpwallet(filename):
                 '"method": "dumpwallet", ' \
                 '"params": ["' + str(filename) + '"] }'
     return rpc.rpc_request(data)
+
 
 def encryptwallet(passphrase=''):
     '''
@@ -82,6 +87,7 @@ def encryptwallet(passphrase=''):
                 '"params": ['+str(passphrase)+'] }'
     return rpc.rpc_request(data)
 
+
 def getaccount(address):
     '''
     The getaccount method returns the account associated with
@@ -93,6 +99,7 @@ def getaccount(address):
                 '"method": "getaccount", ' \
                 '"params": ["' + str(address) + '"] }'
     return rpc.rpc_request(data)
+
 
 def getbalance(account='', minconf=1, includeWatchOnly=False):
     '''
@@ -111,6 +118,7 @@ def getbalance(account='', minconf=1, includeWatchOnly=False):
                 '"params": ["",1] }'
     return rpc.rpc_request(data)
 
+
 def getnewaddress(account=''):
     '''
     The getnewaddress method returns a new address for receiving payments
@@ -123,6 +131,7 @@ def getnewaddress(account=''):
                 '"params": [] }'
     return rpc.rpc_request(data)
 
+
 def getrawchangeaddress():
     '''
     The getrawchangeaddress returns a new address that can be used
@@ -133,6 +142,7 @@ def getrawchangeaddress():
                 '"method": "getrawchangeaddress", ' \
                 '"params": [] }'
     return rpc.rpc_request(data)
+
 
 def getreceivedbyaddress(address='', minconf=1):
     '''
@@ -148,6 +158,7 @@ def getreceivedbyaddress(address='', minconf=1):
                 '"method": "getreceivedbyaddress", ' \
                 '"params": ["' + str(address) + '", ' + str(minconf) + '] }'
     return rpc.rpc_request(data)
+
 
 def gettransaction(txid, includeWatchOnly=False):
     '''
@@ -166,6 +177,7 @@ def gettransaction(txid, includeWatchOnly=False):
                     str(includeWatchOnly) + '"] }'
     return rpc.rpc_request(data)
 
+
 def getunconfirmedbalance():
     '''
     The getunconfirmedbalance method returns the server's total
@@ -176,6 +188,7 @@ def getunconfirmedbalance():
                 '"method": "getunconfirmedbalance", ' \
                 '"params": [] }'
     return rpc.rpc_request(data)
+
 
 def importaddress(address, label='', rescan=True):
     '''
@@ -195,6 +208,7 @@ def importaddress(address, label='', rescan=True):
                     str(label) + '", ' + str(rescan).lower() + '] }'
     return rpc.rpc_request(data)
 
+
 def importprivkey(privKey='', label='', rescan=True):
     '''
     The importprivkey method adds a private key to your wallet.
@@ -210,6 +224,7 @@ def importprivkey(privKey='', label='', rescan=True):
                     '",'+str(rescan).lower()+'] }'
     return rpc.rpc_request(data)
 
+
 def importwallet(path):
     '''
     The importwallet method imports transparent-address keys from
@@ -222,6 +237,7 @@ def importwallet(path):
                 '"params": ["' + str(path) + '"] }'
     return rpc.rpc_request(data)
 
+
 def keypoolrefill(newsize=100):
     '''
     The keypoolrefill method refills the keypool
@@ -232,6 +248,7 @@ def keypoolrefill(newsize=100):
                 '"method": "keypoolrefill", ' \
                 '"params": [' + str(newsize) + '] }'
     return rpc.rpc_request(data)
+
 
 def listaddressgroupings():
     '''
@@ -248,6 +265,7 @@ def listaddressgroupings():
                 '"params": [] }'
     return rpc.rpc_request(data)
 
+
 def listlockunspent():
     '''
     The listlockunspent method returns a list of temporarily
@@ -260,6 +278,7 @@ def listlockunspent():
                 '"method": "listlockunspent", ' \
                 '"params": [] }'
     return rpc.rpc_request(data)
+
 
 def listreceivedbyaddress(minconf=1, includeEmpty=False, includeWatchOnly=False):
     '''
@@ -309,6 +328,7 @@ def listsinceblock(blockhash='', targetconf=1, includeWatchOnly=False):
            '] }'
     return rpc.rpc_request(data)
 
+
 def listtransactions(account="*", count=10, skip=0, includeWatchOnly=False):
     '''
     The listtransactions method returns up to count most recent
@@ -328,6 +348,7 @@ def listtransactions(account="*", count=10, skip=0, includeWatchOnly=False):
                 '"params": ["*", ' + str(count) + ', ' + str(skip) +\
                     ', ' + str(includeWatchOnly).lower() + '] }'
     return rpc.rpc_request(data)
+
 
 def listunspent(minconf=1, maxconf=9999999, addresses=[""]):
     '''
@@ -367,6 +388,7 @@ def listunspent(minconf=1, maxconf=9999999, addresses=[""]):
                     ', ' + addr_list + '] }'
     return rpc.rpc_request(data)
 
+
 def lockunspent(unlock=False, txid='', vout=0):
     '''
     The lockunspent method locks (unlock = false) or unlocks
@@ -384,6 +406,7 @@ def lockunspent(unlock=False, txid='', vout=0):
            '}]] }'
     return rpc.rpc_request(data)
 
+
 def resendwallettransactions():
     '''
     The resendwallettransactions method immediately re-broadcasts
@@ -395,6 +418,7 @@ def resendwallettransactions():
                 '"method": "resendwallettransactions", ' \
                 '"params": [] }'
     return rpc.rpc_request(data)
+
 
 def sendmany(account='', amounts={'': 0}, minconf=1, comment='',
              subtractFeeFromAmt=['']):
@@ -436,6 +460,7 @@ def sendmany(account='', amounts={'': 0}, minconf=1, comment='',
                     ', "' + str(comment) + '", '+subtractFeeFrom_list+'] }'
     return rpc.rpc_request(data)
 
+
 def sendtoaddress(address='', amount=0.0, comment='', comment_to='',
                   subtractFeeFromAmt=False):
     '''
@@ -461,6 +486,7 @@ def sendtoaddress(address='', amount=0.0, comment='', comment_to='',
                     '", ' + str(subtractFeeFromAmt).lower() + '] }'
     return rpc.rpc_request(data)
 
+
 def setpubkey(pubKey=''):
     '''
     The setpubkey method sets the indicated pubkey. This method
@@ -476,6 +502,7 @@ def setpubkey(pubKey=''):
                 '"params": ["' + str(pubKey) + '"] }'
     return rpc.rpc_request(data)
 
+
 def settxfee(amount=0.0):
     '''
     The settxfee method sets the transaction fee per kB
@@ -487,6 +514,7 @@ def settxfee(amount=0.0):
                 ' "method": "settxfee", ' \
                 '"params": [' + str(amount) + '] }'
     return rpc.rpc_request(data)
+
 
 def signmessage(address='', message=''):
     '''
@@ -503,6 +531,7 @@ def signmessage(address='', message=''):
                 '"params": ["' + str(address) + '", "' + str(message) + '"] }'
     return rpc.rpc_request(data)
 
+
 def walletlock():
     '''
     The walletlock method re-locks a wallet that has a passphrase
@@ -513,6 +542,7 @@ def walletlock():
                 '"method": "walletlock", ' \
                 '"params": [] }'
     return rpc.rpc_request(data)
+
 
 def walletpassphrase(passphrase='', timeout=0):
     '''
@@ -529,6 +559,7 @@ def walletpassphrase(passphrase='', timeout=0):
                 '"params": ["'+str(passphrase)+'", '+str(timeout)+'] }'
     return rpc.rpc_request(data)
 
+
 def walletpassphrasechange(oldpassphrase='', newpassphrase=''):
     '''
     The walletpassphrasechange method changes "oldpassphrase" to
@@ -543,6 +574,7 @@ def walletpassphrasechange(oldpassphrase='', newpassphrase=''):
            '"] }'
     return rpc.rpc_request(data)
 
+
 def z_exportkey(z_address=''):
     '''
     The z_exportkey method reveals the private z_key
@@ -556,6 +588,7 @@ def z_exportkey(z_address=''):
                 '"params": ["'+str(z_address)+'"] }'
     return rpc.rpc_request(data)
 
+
 def z_exportviewingkey(z_address=''):
     '''
     The z_exportviewingkey method reveals the viewing key
@@ -567,6 +600,7 @@ def z_exportviewingkey(z_address=''):
                 '"method": "z_exportviewingkey", ' \
                 '"params": ["'+str(z_address)+'"] }'
     return rpc.rpc_request(data)
+
 
 def z_exportwallet(filename='z_wallet_export'):
     '''
@@ -581,6 +615,7 @@ def z_exportwallet(filename='z_wallet_export'):
                 '"method": "z_exportwallet", ' \
                 '"params": ["'+str(filename)+'"] }'
     return rpc.rpc_request(data)
+
 
 def z_getbalance(address='', minconf=1):
     '''
@@ -597,6 +632,7 @@ def z_getbalance(address='', minconf=1):
                 '"params": ["'+str(address)+'", '+str(minconf)+'] }'
     return rpc.rpc_request(data)
 
+
 def z_getnewaddress():
     '''
     The z_getnewaddress method returns a new z_address for receiving
@@ -607,6 +643,7 @@ def z_getnewaddress():
                 '"method": "z_getnewaddress", ' \
                 '"params": [] }'
     return rpc.rpc_request(data)
+
 
 def z_getoperationresult(operationid=['']):
     '''
@@ -643,6 +680,7 @@ def z_getoperationresult(operationid=['']):
     data = '{'+rpc.get_request_metadata()+', "method": "z_getoperationresult", "params": ['+oppid_list+'] }'
     return rpc.rpc_request(data)
 
+
 def z_getoperationstatus(operationid=['']):
     '''
     The z_getoperationstatus message queries the operation status
@@ -663,6 +701,7 @@ def z_getoperationstatus(operationid=['']):
                 '"method": "z_getoperationstatus", ' \
                 '"params": ['+oppid_list+'] }'
     return rpc.rpc_request(data)
+
 
 def z_gettotalbalance(minconf=1, includeWatchOnly=False):
     '''
@@ -686,6 +725,7 @@ def z_gettotalbalance(minconf=1, includeWatchOnly=False):
            '] }'
     return rpc.rpc_request(data)
 
+
 def z_importkey(z_privatekey='', rescan='whenkeyisnew', startHeight=0):
     '''
     The z_importkey method imports z_privatekey to your wallet.
@@ -702,6 +742,7 @@ def z_importkey(z_privatekey='', rescan='whenkeyisnew', startHeight=0):
                 '"params": ["'+str(z_privatekey)+'", "'+\
                     str(rescan)+'", '+str(startHeight)+'] }'
     return rpc.rpc_request(data)
+
 
 def z_importviewingkey(viewing_key='', rescan='whenkeyisnew', startHeight=0):
     '''
@@ -721,6 +762,7 @@ def z_importviewingkey(viewing_key='', rescan='whenkeyisnew', startHeight=0):
                     str(rescan)+'", '+str(startHeight)+'] }'
     return rpc.rpc_request(data)
 
+
 def z_importwallet(filename=''):
     '''
     The z_importwallet method imports t address and z address keys
@@ -732,6 +774,7 @@ def z_importwallet(filename=''):
                 '"method": "z_importwallet", ' \
                 '"params": ["'+str(filename)+'"] }'
     return rpc.rpc_request(data)
+
 
 def z_listaddresses(includeWatchOnly=False):
     '''
@@ -747,6 +790,7 @@ def z_listaddresses(includeWatchOnly=False):
                 '"params": ['+str(includeWatchOnly).lower()+'] }'
     return rpc.rpc_request(data)
 
+
 def z_listoperationids(status=''):
     '''
     The z_listoperationids method returns the list of operation
@@ -760,6 +804,7 @@ def z_listoperationids(status=''):
                 '"method": "z_listoperationids", ' \
                 '"params": ["'+str(status)+'"] }'
     return rpc.rpc_request(data)
+
 
 def z_listreceivedbyaddress(address='', minconf=1):
     '''
@@ -789,6 +834,7 @@ def z_listreceivedbyaddress(address='', minconf=1):
                 '"params": ["'+str(address)+'", '+str(minconf)+'] }'
     return rpc.rpc_request(data)
 
+
 def z_listunspent(minconf=1, maxconf=9999999, includeWatchOnly=False,
                   addresses=['']):
     '''
@@ -814,6 +860,7 @@ def z_listunspent(minconf=1, maxconf=9999999, includeWatchOnly=False,
                 '"params": ['+str(minconf)+', '+str(maxconf)+\
                     ', '+str(includeWatchOnly).lower()+', '+addr_list+'] }'
     return rpc.rpc_request(data)
+
 
 def z_mergetoaddress(fromaddresses=[''], toaddress='', fee=0.0001,
                      transparent_limit=50, shielded_limit=10, memo=''):
@@ -867,6 +914,7 @@ def z_mergetoaddress(fromaddresses=[''], toaddress='', fee=0.0001,
            '] }'
     return rpc.rpc_request(data)
 
+
 def z_sendmany(fromaddress='', amounts={'': 0.0}, memo='', minconf=1,
                fee=0.0001):
     '''
@@ -901,6 +949,7 @@ def z_sendmany(fromaddress='', amounts={'': 0.0}, memo='', minconf=1,
            '] }'
     return rpc.rpc_request(data)
 
+
 def z_shieldcoinbase(fromaddress='', toaddress='', fee=0.0001, limit=50):
     '''
     The z_shieldcoinbase method shields transparent coinbase funds by
@@ -933,6 +982,7 @@ def z_shieldcoinbase(fromaddress='', toaddress='', fee=0.0001, limit=50):
            '"] }'
     return rpc.rpc_request(data)
 
+
 def zcbenchmark(benchmarktype='', samplecount=1):
     '''
     The zcbenchmark method runs a benchmark of the selected
@@ -946,9 +996,4 @@ def zcbenchmark(benchmarktype='', samplecount=1):
                 '"method": "zcbenchmark", ' \
                 '"params": ["'+str(benchmarktype)+'", '+str(samplecount)+'] }'
     return rpc.rpc_request(data)
-
-
-
-
-
 
