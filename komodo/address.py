@@ -1,5 +1,6 @@
 import rpc_util.rpc as rpc
 
+
 def getaddressbalance(addresses=[""]):
     '''
     The getaddressbalance method returns the confirmed balance for
@@ -155,3 +156,4 @@ def getsnapshot(top=0):
                 '"method": "getsnapshot", ' \
                 '"params": ["' + str(top) + '"] }'
     return rpc.rpc_request(data)
+
