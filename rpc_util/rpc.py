@@ -1,20 +1,20 @@
 import requests
-from komodo_rpc import KomodoRpc
+from komodo_rpc import KomodoRPC
 
 
 def rpc_request(data_string=''):
-    if KomodoRpc.rpc_username != '':
-        req_url = 'http://{0}:{1}/'.format(str(KomodoRpc.node_addr),
-                                           str(KomodoRpc.rpc_port))
+    if KomodoRPC.rpc_username != '':
+        req_url = 'http://{0}:{1}/'.format(str(KomodoRPC.node_addr),
+                                           str(KomodoRPC.rpc_port))
         response = requests.post(req_url,
-                                 headers=KomodoRpc.req_headers,
+                                 headers=KomodoRPC.req_headers,
                                  data=data_string,
-                                 auth=(KomodoRpc.rpc_username,
-                                       KomodoRpc.rpc_password)
+                                 auth=(KomodoRPC.rpc_username,
+                                       KomodoRPC.rpc_password)
                                  )
     else:
         return '<!> Please check your RPC authentication credentials.\n' \
-                    'Usage: KomodoRpc(node_addr, rpc_port, ' \
+                    'Usage: KomodoRPC(node_addr, rpc_port, ' \
                     'req_method, rpc_username, rpc_password, jsonrpc_ver, ' \
                     'rpc_req_id) \n' \
                    '\t node_addr: (string, default="127.0.0.1") IP address ' \
@@ -39,6 +39,6 @@ def rpc_request(data_string=''):
 
 
 def get_request_metadata():
-    return '"jsonrpc": "'+str(KomodoRpc.jsonrpc_ver)+'", ' \
-                '"id":"'+str(KomodoRpc.rpc_req_id)+'"'
+    return '"jsonrpc": "'+str(KomodoRPC.jsonrpc_ver)+'", ' \
+                '"id":"'+str(KomodoRPC.rpc_req_id)+'"'
 
