@@ -1,5 +1,6 @@
 import rpc_util.rpc as rpc
 
+
 def createmultisig(number_required=1, keys=['']):
     '''
     The createmultisig method creates a multi-signature address with
@@ -62,7 +63,6 @@ def estimatefee(num_blocks=0):
                 '"method": "estimatefee", ' \
                 '"params": [' + str(num_blocks) + '] }'
     return rpc.rpc_request(data)
-
 
 
 def estimatepriority(num_blocks=0):
@@ -183,3 +183,4 @@ def z_validateaddress(address=''):
                 '"method": "z_validateaddress", ' \
                 '"params": ["' + str(address) + '"] }'
     return rpc.rpc_request(data)
+
