@@ -62,4 +62,6 @@
 #####
 ### Documentation:
 - #### [Komodo API Guide](https://developers.komodoplatform.com/basic-docs/komodo-api/)
+### PyPi package listing: 
+- #### [Komodo-RPC-Library](https://pypi.org/project/komodorpc/)
 
