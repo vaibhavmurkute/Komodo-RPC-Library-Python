@@ -1,5 +1,5 @@
 ![Komodo_Logo](logo.png?raw=true)
-# Komodo RPC API Library
+# [Komodo RPC API Library](https://pypi.org/project/komodorpc/)
 
 #### RPC API-Library for Komodo-based asset chains, for Python Developers.
 ===============================================================================
@@ -9,7 +9,10 @@
 ### Installation:
 #### Install 'komodorpc' Python Module:
   - > ` pip install komodorpc `
-  
+
+#### Or Download built-distribution:
+- [komodorpc-1.0](https://pypi.org/project/komodorpc/#files)
+
 ### Usage:
 ``` {.sourceCode .python}
 >>> from komodo_rpc import KomodoRPC
