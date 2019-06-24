@@ -61,6 +61,7 @@
 |      komodo.wallet      | Includes all wallet-related commands. <br>  Example:<br> ```  import komodo.wallet as wallet``` <br> ```  result = wallet.getwalletinfo() ```                                                                                                                                                                                                                     |
 #####
 ### Documentation:
+- #### Wiki: [Komodo RPC API Library](https://github.com/V413H4V/Komodo-RPC-Library-Python/wiki)
 - #### [Komodo API Guide](https://developers.komodoplatform.com/basic-docs/komodo-api/)
 ### PyPi package listing: 
 - #### [Komodo-RPC-Library](https://pypi.org/project/komodorpc/)
