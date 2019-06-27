@@ -14,6 +14,7 @@
 - [komodorpc-1.0](https://pypi.org/project/komodorpc/#files)
 
 ### Usage:
+- For Python 3:
 ``` {.sourceCode .python}
 >>> from komodo_rpc import KomodoRPC
 >>> import komodo.wallet as wallet
@@ -24,7 +25,20 @@
 '{"result":{"walletversion":60000,"balance":2000000.16063408,"unconfirmed_balance":0.00000000,"immature_balance":0.00000000,"txcount":15,"keypoololdest":1561025064,"keypoolsize":101,"paytxfee":0.00000000,"seedfp":"7bd4d97c90d68f5921fee04e63168bd956d63346bf011c80d46e75b134385c"},"error":null,"id":"curltest"}\n'
 >>> 
 ```
- - #### Create an object of **KomodoRPC** class with following parameters to populate RPC options and authentication parameters.
+- For Python 2.7:
+``` {.sourceCode .python}
+>>> from komodo_rpc import KomodoRPC
+>>> import komodo.wallet as wallet
+>>> KomodoRPC.node_addr='127.0.0.1'
+>>> KomodoRPC.rpc_port = 98102
+>>> KomodoRPC.rpc_username='user71631186'
+>>> KomodoRPC.rpc_password='pass725b1d10ae0c2217a8ffbgh30e5ca13367afvdl937bf1cbq11bd16f8a1e36d30'
+>>> result = wallet.getwalletinfo()
+>>> result
+'{"result":{"walletversion":60000,"balance":2000000.16063408,"unconfirmed_balance":0.00000000,"immature_balance":0.00000000,"txcount":15,"keypoololdest":1561025064,"keypoolsize":101,"paytxfee":0.00000000,"seedfp":"7bd4d97c90d68f5921fee04e63168bd956d63346bf011c80d46e75b134385c"},"error":null,"id":"curltest"}\n'
+>>> 
+```
+ - #### For Python 3: Create an object of **KomodoRPC** class with following parameters to populate RPC options and authentication parameters.
  |   Argument   |                                   Description                                   |
 |:------------:|:-------------------------------------------------------------------------------:|
 |   node_addr  | IP address of the node where the Komodo-daemon is running; **Default: '127.0.0.1'** |
